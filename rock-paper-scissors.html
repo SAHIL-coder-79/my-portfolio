@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="animation of rock.css">
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <p>Choose Rock, Paper, or Scissors</p>
+
+    <div class="game-container">
+        <div class="player">
+            <h2>You</h2>
+            <img id="playerHand" src="rock.png" class="hand-img" alt="Player Hand">
+        </div>
+        
+        <div class="computer">
+            <h2>Computer</h2>
+            <img id="computerHand" src="rock.png" class="hand-img" alt="Computer Hand">
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="play('rock')">Rock</button>
+        <button onclick="play('paper')">Paper</button>
+        <button onclick="play('scissors')">Scissors</button>
+    </div>
+
+    <h2 id="result"></h2>
+
+    <audio id="winSound" src="win .mp3"></audio>
+    <audio id="loseSound" src="lose.mp3"></audio>
+    <audio id="tieSound" src="tie.mp3"></audio>
+
+    <script src="rock logic.js"></script>
+</body>
+</html>

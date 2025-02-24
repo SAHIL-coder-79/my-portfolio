@@ -1,0 +1,85 @@
+/* Background Animation */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #ff6b6b, #f06595, #cc5de8, #845ef7, #5c7cfa);
+    background-size: 300% 300%;
+    animation: bgAnimation 10s infinite alternate;
+    color: white;
+}
+
+@keyframes bgAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Game Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Player and Computer Sections */
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 30px;
+}
+
+.player, .computer {
+    text-align: center;
+}
+
+/* Hand Gesture Images */
+.hand-img {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Buttons Styling */
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-size: 18px;
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff922b, #fcc419);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #f06595, #cc5de8);
+}
+
+/* Result Styling */
+#result {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Game</title>
+    <link rel="stylesheet" href="animation of game.css">
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+</head>
+<body>
+
+    <h1>Adventure Choice Game</h1>
+    <p id="story-text">You find yourself in a dense jungle. There's a mysterious path ahead. What do you do?</p>
+    <div id="choices">
+        <button onclick="makeChoice(1)">Take the left path</button>
+        <button onclick="makeChoice(2)">Take the right path</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="background.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effects -->
+    <audio id="choice-sound">
+        <source src="choice.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="win-sound">
+        <source src="win.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="lose-sound">
+        <source src="lose 2.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Victory Celebration -->
+    <div id="victory-message">
+        <h2>🎉 Congratulations! You Won! 🏆</h2>
+        <p>You successfully completed your adventure!</p>
+        <button onclick="restartGame()">Play Again</button>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script of game.js"></script>
+</body>
+</html>

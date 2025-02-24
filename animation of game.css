@@ -1,0 +1,81 @@
+/* Full-screen Gradient Background */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Game Container */
+.game-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Buttons */
+button {
+    font-size: 20px;
+    padding: 12px 25px;
+    margin: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #2a9d8f, #264653);
+    box-shadow: 0 5px 20px rgba(42, 157, 143, 0.5);
+}
+
+/* Victory Message */
+#victory-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+#victory-message h2 {
+    font-size: 36px;
+    background: linear-gradient(45deg, #ffeb3b, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#victory-message button {
+    background: linear-gradient(45deg, #ff5722, #ff9800);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#victory-message button:hover {
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+}
