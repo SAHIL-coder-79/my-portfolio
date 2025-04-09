@@ -83,3 +83,25 @@ button:hover {
     margin-top: 20px;
     font-weight: bold;
 }
+
+/* Play Again Button Styling */
+.play-again {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #51cf66, #94d82d);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.play-again:hover {
+    transform: translateX(-50%) scale(1.1);
+    background: linear-gradient(45deg, #40c057, #82c91e);
+}

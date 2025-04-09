@@ -1,43 +1,53 @@
-function play(playerChoice) {
+function playGame(playerChoice) {
     const choices = ["rock", "paper", "scissors"];
     const computerChoice = choices[Math.floor(Math.random() * 3)];
 
-    // Get image elements
-    let playerHand = document.getElementById("playerHand");
-    let computerHand = document.getElementById("computerHand");
+    const playerHand = document.getElementById("playerHand");
+    const computerHand = document.getElementById("computerHand");
 
-    // Reset animations
-    playerHand.classList.remove("shake");
-    computerHand.classList.remove("shake");
+    // Apply bounce animation
+    playerHand.classList.add("bounce");
+    computerHand.classList.add("bounce");
 
-    // Add shake animation
+    // Wait for animation to complete before changing images
     setTimeout(() => {
-        playerHand.classList.add("shake");
-        computerHand.classList.add("shake");
-    }, 100);
+        playerHand.classList.remove("bounce");
+        computerHand.classList.remove("bounce");
 
-    // Change images after animation
-    setTimeout(() => {
-        playerHand.src = `${playerChoice}.png`;
-        computerHand.src = `${computerChoice}.png`;
+        playerHand.src = playerChoice + ".png";
+        computerHand.src = computerChoice + ".png";
 
-        let result = "";
-
+        let resultText = "";
         if (playerChoice === computerChoice) {
-            result = "It's a tie!";
+            resultText = "It's a Tie!";
             document.getElementById("tieSound").play();
         } else if (
             (playerChoice === "rock" && computerChoice === "scissors") ||
             (playerChoice === "paper" && computerChoice === "rock") ||
             (playerChoice === "scissors" && computerChoice === "paper")
         ) {
-            result = "You win!";
+            resultText = "You Win!";
             document.getElementById("winSound").play();
         } else {
-            result = "You lose!";
+            resultText = "You Lose!";
             document.getElementById("loseSound").play();
         }
 
-        document.getElementById("result").innerText = result;
-    }, 500); // Delay to match shake animation
+        document.getElementById("result").innerText = resultText;
+
+        // Show the Play Again button and hide the main buttons
+        document.getElementById("playAgain").style.display = "block";
+        document.querySelector(".buttons").style.display = "none";
+
+    }, 500); // Matches bounce animation duration
+}
+
+function resetGame() {
+    document.getElementById("result").innerText = "";
+    document.getElementById("playerHand").src = "rock.png";
+    document.getElementById("computerHand").src = "rock.png";
+
+    // Hide the Play Again button and show the main buttons
+    document.getElementById("playAgain").style.display = "none";
+    document.querySelector(".buttons").style.display = "block";
 }

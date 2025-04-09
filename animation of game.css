@@ -79,3 +79,22 @@ button:hover {
 #victory-message button:hover {
     background: linear-gradient(45deg, #ff9800, #ff5722);
 }
+
+#victory-message button:nth-child(2) { /* Style for Try Again button */
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s;
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+}
+
+#victory-message button:nth-child(2):hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 5px 20px rgba(37, 117, 252, 0.5);
+}

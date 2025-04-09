@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: skyblue;
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bird {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    width: 40px;
+    height: 40px;
+    background-color: yellow;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pipe {
+    position: absolute;
+    width: 50px;
+    height: 200px;
+    background-color: green;
+    bottom: 0;
+    left: 100vw;
+}
+
+.upper {
+    top: 0;
+    height: 200px;
+}
+
+.lower {
+    bottom: 0;
+    height: 200px;
+}

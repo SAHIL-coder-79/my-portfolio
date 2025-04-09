@@ -1,0 +1,59 @@
+let bird = document.querySelector('.bird');
+let gameContainer = document.querySelector('.game-container');
+let pipes = document.querySelectorAll('.pipe');
+let gravity = 3;
+let birdVelocity = 0;
+let isGameOver = false;
+let score = 0;
+
+document.addEventListener('keydown', () => {
+    if (!isGameOver) {
+        birdVelocity = -10;
+    }
+});
+
+function checkCollision() {
+    pipes.forEach(pipe => {
+        let birdRect = bird.getBoundingClientRect();
+        let pipeRect = pipe.getBoundingClientRect();
+
+        if (
+            birdRect.left < pipeRect.left + pipeRect.width &&
+            birdRect.left + birdRect.width > pipeRect.left &&
+            birdRect.top < pipeRect.top + pipeRect.height &&
+            birdRect.height + birdRect.top > pipeRect.top
+        ) {
+            isGameOver = true;
+            alert('Game Over! Your Score: ' + score);
+            location.reload();
+        }
+    });
+
+    if (bird.offsetTop >= window.innerHeight || bird.offsetTop <= 0) {
+        isGameOver = true;
+        alert('Game Over! Your Score: ' + score);
+        location.reload();
+    }
+}
+
+function gameLoop() {
+    if (isGameOver) return;
+
+    birdVelocity += gravity;
+    bird.style.top = (bird.offsetTop + birdVelocity) + 'px';
+
+    pipes.forEach(pipe => {
+        let pipeLeft = parseInt(window.getComputedStyle(pipe).getPropertyValue('left'));
+        pipe.style.left = (pipeLeft - 3) + 'px';
+
+        if (pipeLeft < -50) {
+            pipe.style.left = '100vw';
+            score++;
+        }
+    });
+
+    checkCollision();
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();

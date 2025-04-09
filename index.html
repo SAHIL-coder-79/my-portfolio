@@ -10,17 +10,17 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" onclick="showSection('about')">About Me</a></li>
+                <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+                <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+                <li><a href="#" onclick="showSection('contact')">Contact</a></li>
             </ul>
         </nav>
-        <h1 class="glow">Welcome to My Creative Portfolio</h1>
+        <h1 class="glow">Welcome to My Creative Portfolio <span class="wave-hand">👋</span></h1>
     </header>
 
     <div class="container">
-        <section id="about" class="profile">
+        <section id="about" class="profile section">
             <div class="profile-img">
                 <img id="profileImage" src="sahil.jpg" alt="Sahil Tadavi">
             </div>
@@ -51,7 +51,7 @@
             <p>I love playing **volleyball, cricket, and football**. Sports help me stay active and enhance my teamwork skills.</p>
         </section>
 
-        <section id="skills" class="skills">
+        <section id="skills" class="skills section hidden">
             <h2>Skills</h2>
             <div class="skill-grid">
                 <div class="skill-item">
@@ -66,11 +66,7 @@
                     <span>JavaScript</span>
                     <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
                 </div>
-                <div class="skill-item">
-                    <span>React</span>
-                    <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
-                </div>
-                <div class="skill-item">
+                                <div class="skill-item">
                     <span>Python</span>
                     <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
                 </div>
@@ -81,25 +77,25 @@
             </div>
         </section>
 
-        <section id="projects" class="projects">
+        <section id="projects" class="projects section hidden">
             <h2>Projects</h2>
             <div class="project-cards">
                 <div class="card project" data-info="A simple calculator for basic arithmetic operations.">
-                    <img src="calculator.jpg" alt="Calculator Project">
+              <img src="CALCULATOR.jpg" alt="Calculator Project">
                     <a href="calculator.html" target="_blank">Project 1: CALCULATOR</a>
                 </div>
                 <div class="card project" data-info="A fun Rock-Paper-Scissors game to play against the computer.">
-                    <img src="rock-paper.jpg" alt="Rock Paper Scissors">
+                    <img src="rock-paper.png" alt="Rock Paper Scissors">
                     <a href="rock-paper-scissors.html" target="_blank">Project 2: ROCK PAPER SCISSORS</a>
                 </div>
                 <div class="card project" data-info="An adventure game where you make choices to determine the story.">
-                    <img src="choice-game.jpg" alt="Choice Based Game">
+                    <img src="choice-game.png" alt="Choice Based Game">
                     <a href="choice-game.html" target="_blank">Project 3: CHOICE-BASED GAME</a>
                 </div>
             </div>
         </section>
         
-        <section id="contact" class="contact">
+        <section id="contact" class="contact section hidden">
             <h2>Contact</h2>
             <p>Reach out via <a href="mailto:your.xyz@123.com">Email</a> or connect on:</p>
             <div class="social-links">
@@ -110,10 +106,90 @@
         </section>
     </div>
 
+    <div class="achievements-sidebar">
+        <button id="toggleAchievements">🏆 Achievements</button>
+    </div>
+
+    <div id="achievementsPage" class="hidden">
+        <button id="goBack">⬅ Go Back</button>
+        <h3>📜 Certificates</h3>
+        <div class="certificates-timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <p>2025</p>
+                    <img src="CERTIFICATE 1.png" alt="Certificate 1" class="certificate-img">
+                    <p>ORACLE</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <p>2025</p>
+                    <img src="CERTIFICATE 2.png" alt="Certificate 2">
+                    <p>ESSENTIAL PYTHON 1</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <p>2025</p>
+                    <img src="CERTIFICATE 3.png" alt="Certificate 3" class="certificate-img">
+                    <p>ESSENTIAL PYTHON 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="hidden">
+        <span id="closeFullscreen">✖</span>
+        <img id="fullscreenImage" src="" alt="Fullscreen Certificate">
+    </div>
+
     <footer>
         <p>&copy; 2025 Sahil Tadavi. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
+<script>
+        const achievementsSidebar = document.querySelector('.achievements-sidebar');
+        const achievementsPage = document.getElementById('achievementsPage');
+        const goBackButton = document.getElementById('goBack');
+
+        document.getElementById('toggleAchievements').addEventListener('click', function () {
+            achievementsSidebar.style.display = 'none';
+            achievementsPage.classList.remove('hidden');
+        });
+
+        goBackButton.addEventListener('click', function () {
+            achievementsSidebar.style.display = 'block';
+            achievementsPage.classList.add('hidden');
+        });
+
+        const certificates = document.querySelectorAll('.certificate-img');
+        const fullscreenModal = document.getElementById('fullscreenModal');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const closeFullscreen = document.getElementById('closeFullscreen');
+
+        certificates.forEach(certificate => {
+            certificate.addEventListener('click', () => {
+                fullscreenImage.src = certificate.src;
+                fullscreenModal.classList.remove('hidden');
+            });
+        });
+
+        closeFullscreen.addEventListener('click', () => {
+            fullscreenModal.classList.add('hidden');
+        });
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
