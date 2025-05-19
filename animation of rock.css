@@ -39,7 +39,17 @@ body {
 .hand-img {
     width: 150px;
     height: 150px;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s, box-shadow 0.5s, opacity 0.5s;
+    opacity: 0.5;
+    filter: grayscale(60%);
+}
+
+.hand-img.selected {
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 0 20px 5px #fff176;
+    transform: scale(1.1);
+    z-index: 1;
 }
 
 /* Shake Animation */
@@ -51,7 +61,7 @@ body {
 }
 
 .shake {
-    animation: shake 0.5s ease-in-out;
+    animation: shake 1s ease-in-out;
 }
 
 /* Buttons Styling */
@@ -85,10 +95,10 @@ button:hover {
 }
 
 /* Play Again Button Styling */
-.play-again {
-    position: absolute;
-    bottom: 20px;
+#playAgain {
+    position: fixed;
     left: 50%;
+    bottom: 40px;
     transform: translateX(-50%);
     font-size: 20px;
     padding: 15px 25px;
@@ -101,7 +111,23 @@ button:hover {
     transition: 0.3s;
 }
 
-.play-again:hover {
+#playAgain:hover {
     transform: translateX(-50%) scale(1.1);
     background: linear-gradient(45deg, #40c057, #82c91e);
+}
+
+/* Scoreboard Styling */
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 22px;
+    margin: 20px 0 0 0;
+    font-weight: bold;
+}
+
+#scoreboard span {
+    background: rgba(0,0,0,0.2);
+    padding: 8px 18px;
+    border-radius: 8px;
 }

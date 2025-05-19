@@ -10,22 +10,36 @@
     <h1>Rock Paper Scissors</h1>
     <p>Make your choice below:</p>
 
+    <div id="scoreboard" aria-label="Scoreboard">
+        <span>Wins: <span id="wins">0</span></span>
+        <span>Losses: <span id="losses">0</span></span>
+        <span>Ties: <span id="ties">0</span></span>
+    </div>
+
     <div class="game-container">
         <div class="player">
             <h2>You</h2>
-            <img id="playerHand" src="rock.png" class="hand-img" alt="Your Choice">
+            <div class="hand-options">
+                <img id="playerRock" src="rock.png" class="hand-img selected" alt="Your Rock">
+                <img id="playerPaper" src="paper.png" class="hand-img" alt="Your Paper">
+                <img id="playerScissors" src="scissor.png" class="hand-img" alt="Your Scissors">
+            </div>
         </div>
         
         <div class="computer">
             <h2>Computer</h2>
-            <img id="computerHand" src="rock.png" class="hand-img" alt="Computer's Choice">
+            <div class="hand-options">
+                <img id="computerRock" src="rock.png" class="hand-img selected" alt="Computer Rock">
+                <img id="computerPaper" src="paper.png" class="hand-img" alt="Computer Paper">
+                <img id="computerScissors" src="scissor.png" class="hand-img" alt="Computer Scissors">
+            </div>
         </div>
     </div>
 
     <div class="buttons">
-        <button onclick="playGame('rock')">Rock</button>
-        <button onclick="playGame('paper')">Paper</button>
-        <button onclick="playGame('scissors')">Scissors</button>
+        <button onclick="playGame('rock')" aria-label="Choose Rock">Rock</button>
+        <button onclick="playGame('paper')" aria-label="Choose Paper">Paper</button>
+        <button onclick="playGame('scissors')" aria-label="Choose Scissors">Scissors</button>
     </div>
 
     <h2 id="result"></h2>
@@ -38,4 +52,5 @@
 
     <script src="rock logic.js"></script>
 </body>
+
 </html>

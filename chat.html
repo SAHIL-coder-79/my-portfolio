@@ -1,0 +1,226 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Base Chatbot</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    .chat-container {
+      background: #1f1f38;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      width: 450px;
+      max-width: 95vw;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: #3a3a6e;
+      padding: 15px 20px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      background: #242444;
+    }
+    .message {
+      max-width: 80%;
+      margin-bottom: 15px;
+      padding: 14px 18px;
+      border-radius: 15px;
+      line-height: 1.4;
+      font-size: 1rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .user-message {
+      background: #5b86e5;
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+    .bot-message {
+      background: #39396f;
+      border-bottom-left-radius: 0;
+    }
+    .chat-input-area {
+      display: flex;
+      border-top: 1px solid #33336e;
+      background: #29295c;
+    }
+    input[type="text"] {
+      flex: 1;
+      border: none;
+      padding: 15px 20px;
+      font-size: 1.1rem;
+      outline: none;
+      color: #eee;
+      background: transparent;
+    }
+    button {
+      background: #5b86e5;
+      border: none;
+      padding: 0 25px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: white;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #3a56b5;
+    }
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background-color: #5b86e5;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" role="main" aria-live="polite">
+    <div class="chat-header">Knowledge Base Chatbot</div>
+    <div class="chat-messages" id="messages" aria-label="Chat message area"></div>
+    <form id="chat-form" class="chat-input-area" autocomplete="off" aria-label="Chat input form">
+      <input type="text" id="user-input" placeholder="Ask me anything..." aria-label="Your question" required />
+      <button type="submit" aria-label="Send question">Send</button>
+    </form>
+  </div>
+
+  <script>
+    (() => {
+      const messagesContainer = document.getElementById('messages');
+      const chatForm = document.getElementById('chat-form');
+      const userInput = document.getElementById('user-input');
+
+      // Knowledge base of questions and answers
+      const knowledgeBase = [
+        { question: "hello", answer: "Hello! How can I assist you today?" },
+        { question: "hi", answer: "Hi there! What can I do for you?" },
+        { question: "how are you", answer: "I'm just a program, but I'm functioning well! How about you?" },
+        { question: "what is your name", answer: "I'm your personal Knowledge Base Chatbot." },
+        { question: "who created you", answer: "I was created by a skilled developer to help answer your questions." },
+        { question: "what can you do", answer: "I answer based on a built-in knowledge base of common questions." },
+        { question: "thank you", answer: "You're welcome! Glad to help." },
+        { question: "thanks", answer: "Anytime! Feel free to ask more questions." },
+        { question: "what time is it", answer: () => `The current time is ${new Date().toLocaleTimeString()}.` },
+        { question: "what date is it", answer: () => `Today's date is ${new Date().toLocaleDateString()}.` },
+        { question: "bye", answer: "Goodbye! Have a wonderful day!" },
+        { question: "what is javascript", answer: "JavaScript is a programming language commonly used to create interactive effects within web browsers." },
+{ question: "what is html", answer: "HTML stands for HyperText Markup Language and is used to structure content on the web." },
+{ question: "what is css", answer: "CSS stands for Cascading Style Sheets and is used to style the appearance of web pages." },
+{ question: "who is the president of the united states", answer: "As of 2024, Joe Biden is the President of the United States." },
+{ question: "what is climate change", answer: "Climate change refers to significant changes in global temperatures and weather patterns over time, primarily caused by human activities." },
+{ question: "how do plants make food", answer: "Plants make food through photosynthesis, a process where they convert sunlight, water, and carbon dioxide into glucose and oxygen." },
+{ question: "what is the capital of france", answer: "The capital of France is Paris." },
+{ question: "what is the tallest mountain", answer: "Mount Everest is the tallest mountain in the world, standing at 8,848 meters (29,029 feet) tall." },
+{ question: "what is the boiling point of water", answer: "The boiling point of water is 100°C (212°F) at standard atmospheric pressure." },
+{ question: "how many continents are there", answer: "There are seven continents: Asia, Africa, North America, South America, Antarctica, Europe, and Australia." },
+{ question: "what is photosynthesis", answer: "Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods from carbon dioxide and water." },
+{ question: "who discovered electricity", answer: "Electricity was studied and developed by many scientists, but Benjamin Franklin is famous for his early experiments." },
+{ question: "what is the fastest animal", answer: "The peregrine falcon is the fastest animal, capable of diving at speeds over 240 mph (386 km/h)." },
+{ question: "how far is the sun", answer: "The sun is approximately 93 million miles (150 million kilometers) from Earth." },
+{ question: "what is a computer", answer: "A computer is an electronic device that processes data and performs tasks according to a set of instructions called software." },
+{ question: "what is artificial intelligence", answer: "Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems." },
+{ question: "how do airplanes fly", answer: "Airplanes fly by generating lift through their wings, which are shaped to move air faster above than below." },
+{ question: "what causes rain", answer: "Rain is caused when water vapor in the atmosphere cools and condenses into droplets that fall to the ground." },
+{ question: "what is the human brain", answer: "The human brain is an organ that serves as the center of the nervous system and controls thoughts, memory, emotion, and bodily functions." },
+{ question: "what is the speed of light", answer: "The speed of light is approximately 299,792 kilometers per second (186,282 miles per second)." },
+{ question: "who wrote hamlet", answer: "William Shakespeare wrote the play Hamlet." },
+{ question: "what is gravity", answer: "Gravity is a force that attracts two bodies toward each other, giving weight to objects and causing them to fall to the ground." },
+{ question: "what languages are spoken in canada", answer: "The official languages of Canada are English and French." },
+{ question: "how old is the earth", answer: "The Earth is approximately 4.54 billion years old." },
+{ question: "what is bitcoin", answer: "Bitcoin is a type of cryptocurrency, a decentralized digital currency without a central bank or single administrator." },
+{ question: "what is the internet", answer: "The Internet is a global network of computers connected to share information and resources." },
+{ question: "what is quantum computing", answer: "Quantum computing is a type of computation that uses quantum-mechanical phenomena such as superposition and entanglement." },
+{ question: "what is the meaning of life", answer: "The meaning of life is a philosophical question, and answers vary depending on beliefs and perspectives." },
+{ question: "who painted the mona lisa", answer: "The Mona Lisa was painted by Leonardo da Vinci." },
+{ question: "how does the stock market work", answer: "The stock market is a marketplace where buyers and sellers trade shares of publicly held companies." },
+
+        // Add more question-answer pairs as needed
+      ];
+
+      // Normalize text by removing punctuation, lowercasing
+      function normalize(text) {
+        return text.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ").trim();
+      }
+
+      // Simple fuzzy matching: find best matching known question
+      function findBestMatch(input) {
+        const normInput = normalize(input);
+        let bestMatch = null;
+        let bestScore = 0;
+
+        knowledgeBase.forEach(entry => {
+          const normQuestion = normalize(entry.question);
+          let score = 0;
+
+          // Score: number of words matched divided by total words in question
+          const inputWords = normInput.split(" ");
+          const questionWords = normQuestion.split(" ");
+          const matched = questionWords.filter(qw => inputWords.includes(qw));
+          score = matched.length / questionWords.length;
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = entry;
+          }
+        });
+
+        // Require at least 0.5 similarity to accept match
+        return bestScore >= 0.5 ? bestMatch : null;
+      }
+
+      function addMessage(text, isUser) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+        messageDiv.textContent = text;
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userText = userInput.value.trim();
+        if (!userText) return;
+        addMessage(userText, true);
+        userInput.value = "";
+
+        const matchedEntry = findBestMatch(userText);
+
+        if (matchedEntry) {
+          const answer = (typeof matchedEntry.answer === "function") ? matchedEntry.answer() : matchedEntry.answer;
+          addMessage(answer, false);
+        } else {
+          addMessage("Sorry, I don't have an answer for that. Please ask something else.", false);
+        }
+      });
+
+      // Greet user on load
+      addMessage("Hello! Ask me a question and I'll do my best to answer.", false);
+    })();
+  </script>
+</body>
+</html>
+

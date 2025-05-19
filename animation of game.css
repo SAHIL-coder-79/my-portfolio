@@ -43,6 +43,11 @@ button:hover {
     box-shadow: 0 5px 20px rgba(42, 157, 143, 0.5);
 }
 
+button:focus {
+    outline: 3px solid #51cf66;
+    outline-offset: 2px;
+}
+
 /* Victory Message */
 #victory-message {
     display: none;
@@ -97,4 +102,14 @@ button:hover {
     transform: scale(1.1);
     background: linear-gradient(45deg, #2575fc, #6a11cb);
     box-shadow: 0 5px 20px rgba(37, 117, 252, 0.5);
+}
+
+#scene-image, #story-text {
+    transition: opacity 0.5s;
+}
+.fade-out {
+    opacity: 0;
+}
+.fade-in {
+    opacity: 1;
 }

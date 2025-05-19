@@ -10,6 +10,12 @@
 <body>
 
     <h1>Adventure Choice Game</h1>
+    <div id="name-entry" style="margin:20px;">
+    <label for="playerName">Enter your name: </label>
+    <input id="playerName" type="text" style="font-size:1.1em;">
+    <button onclick="startGame()">Start</button>
+</div>
+    <img id="scene-image" src="jungle.jpg" alt="Scene image" style="max-width:300px;display:block;margin:20px auto 10px; border-radius:12px;">
     <p id="story-text">You find yourself in a dense jungle. There's a mysterious path ahead. What do you do?</p>
     <div id="choices">
         <button onclick="makeChoice(1)">Take the left path</button>
@@ -42,6 +48,14 @@
 
     <!-- Confetti Canvas -->
     <canvas id="confetti-canvas"></canvas>
+
+    <div id="progress-container" aria-label="Progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:90%;max-width:400px;margin:20px auto 0;">
+    <div id="progress-bar" style="height:16px;background:#fff3;border-radius:8px;overflow:hidden;">
+        <div id="progress-fill" style="height:100%;width:0;background:linear-gradient(90deg,#51cf66,#339af0);transition:width 0.5s;"></div>
+    </div>
+</div>
+
+    <div id="summary" style="display:none; background:rgba(0,0,0,0.8); color:white; padding:20px; border-radius:10px; max-width:400px; margin:30px auto;"></div>
 
     <script src="script of game.js"></script>
 </body>

@@ -16,6 +16,12 @@
                 <li><a href="#" onclick="showSection('contact')">Contact</a></li>
             </ul>
         </nav>
+        <!-- Replace your themeToggle button with this switch markup inside <header> -->
+<label class="theme-switch" id="themeSwitchLabel" title="Toggle Theme">
+    <input type="checkbox" id="themeToggle" />
+    <span class="slider"></span>
+    <span class="switch-icon" id="themeIcon">🌙</span>
+</label>
         <h1 class="glow">Welcome to My Creative Portfolio <span class="wave-hand">👋</span></h1>
     </header>
 
@@ -54,25 +60,30 @@
         <section id="skills" class="skills section hidden">
             <h2>Skills</h2>
             <div class="skill-grid">
-                <div class="skill-item">
+                <div class="skill-item" data-info="Markup language for creating web pages.">
                     <span>HTML</span>
                     <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+                    <div class="skill-tooltip">Markup language for creating web pages.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" data-info="Stylesheet language for designing web pages.">
                     <span>CSS</span>
                     <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+                    <div class="skill-tooltip">Stylesheet language for designing web pages.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" data-info="Programming language for interactive web features.">
                     <span>JavaScript</span>
                     <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+                    <div class="skill-tooltip">Programming language for interactive web features.</div>
                 </div>
-                                <div class="skill-item">
+                                <div class="skill-item" data-info="General-purpose programming language.">
                     <span>Python</span>
                     <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+                    <div class="skill-tooltip">General-purpose programming language.</div>
                 </div>
-                <div class="skill-item">
+                <div class="skill-item" data-info="JavaScript runtime for server-side development.">
                     <span>Node.js</span>
                     <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+                    <div class="skill-tooltip">JavaScript runtime for server-side development.</div>
                 </div>
             </div>
         </section>
@@ -81,7 +92,7 @@
             <h2>Projects</h2>
             <div class="project-cards">
                 <div class="card project" data-info="A simple calculator for basic arithmetic operations.">
-              <img src="CALCULATOR.jpg" alt="Calculator Project">
+                    <img src="CALCULATOR.jpg" alt="Calculator Project">
                     <a href="calculator.html" target="_blank">Project 1: CALCULATOR</a>
                 </div>
                 <div class="card project" data-info="A fun Rock-Paper-Scissors game to play against the computer.">
@@ -92,16 +103,36 @@
                     <img src="choice-game.png" alt="Choice Based Game">
                     <a href="choice-game.html" target="_blank">Project 3: CHOICE-BASED GAME</a>
                 </div>
+                <div class="card project" data-info="A quiz app with multiple categories and scoring.">
+                    <img src="quiz.png" alt="Quiz App">
+                    <a href="quiz-app.html" target="_blank">Project 4: QUIZ APP</a>
+                </div>
+                <div class="card project" data-info="A to-do list app to manage daily tasks efficiently.">
+                    <img src="todo.png" alt="To-Do App">
+                    <a href="todo-app.html" target="_blank">Project 5: TO-DO LIST APP</a>
+                </div>
+                <div class="card project" data-info="A personal portfolio website to showcase my skills and projects.">
+                    <img src="portfolio.png" alt="Portfolio Website">
+                    <a href="https://sahil-coder-79.github.io/my-portfolio/#" target="_blank">Project 6: PORTFOLIO WEBSITE</a>
+                </div>
+                <div class="card project" data-info="A simple chat bot that can answer basic questions.">
+                    <img src="chatbot.png" alt="Chat Bot">
+                    <a href="chat.html" target="_blank">Project 7: CHAT BOT</a>
+                </div>
+                <div class="card project" data-info="A Yoga Pose Perfector project using AI to analyze and improve yoga postures.">
+                    <img src="yogapose.jpg" alt="Yoga Pose Perfector">
+                    <a href="https://youtu.be/btcVl4vUzsQ?feature=shared" target="_blank">Project 8: YOGA POSE PERFECTOR (YouTube)</a>
+                </div>
             </div>
         </section>
         
         <section id="contact" class="contact section hidden">
             <h2>Contact</h2>
-            <p>Reach out via <a href="mailto:your.xyz@123.com">Email</a> or connect on:</p>
+            <p>Reach out via <a href="mailto:sahiltadavi2005@gmail.com">Email</a> or connect on:</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="https://github.com/yourgithub" target="_blank">GitHub</a>
-                <a href="https://twitter.com/yourtwitter" target="_blank">Twitter</a>
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">🔗 LinkedIn</a>
+                <a href="https://github.com/SAHIL-coder-79" target="_blank">🐙 GitHub</a>
+                <a href="https://twitter.com/yourtwitter" target="_blank">🐦 Twitter</a>
             </div>
         </section>
     </div>
@@ -190,6 +221,34 @@
                 }
             });
         }
+
+        // Theme changer logic
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    let darkMode = false;
+
+    function setTheme(dark) {
+        if (dark) {
+            body.classList.add('dark-theme');
+            themeToggle.textContent = '☀️ Theme';
+        } else {
+            body.classList.remove('dark-theme');
+            themeToggle.textContent = '🌙 Theme';
+        }
+    }
+
+    themeToggle.addEventListener('click', function () {
+        darkMode = !darkMode;
+        setTheme(darkMode);
+        // Optionally save preference
+        localStorage.setItem('portfolioTheme', darkMode ? 'dark' : 'light');
+    });
+
+    // On load, check for saved theme
+    if (localStorage.getItem('portfolioTheme') === 'dark') {
+        darkMode = true;
+        setTheme(true);
+    }
     </script>
 </body>
 </html>
