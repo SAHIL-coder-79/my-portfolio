@@ -548,6 +548,67 @@ footer {
     }
 }
 
+/* Contact Form Styles */
+.contact-form {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 8px;
+    width: 90%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1em;
+    background: #fff;
+    color: #232526;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 10px 24px;
+    border-radius: 6px;
+    background: #ffd700;
+    color: #232526;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.contact-form button:hover {
+    background: #ffb700;
+}
+
+.form-status {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #fff;
+    min-height: 20px;
+    text-align: center;
+}
+
+/* Dark theme overrides */
+.dark-theme .contact-form input,
+.dark-theme .contact-form textarea {
+    background: #232526;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.dark-theme .form-status {
+    color: #ffd700;
+}
+
 /* Dark Theme Styles */
 .dark-theme {
     background: linear-gradient(45deg, #232526, #414345, #232526, #232526);

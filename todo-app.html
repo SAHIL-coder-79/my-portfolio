@@ -8,9 +8,10 @@
 <body>
     <div class="todo-container">
         <h1>To-Do List</h1>
-        <input id="todoInput" type="text" placeholder="Add a new task...">
-        <button id="addBtn">Add</button>
+        <input id="todoInput" type="text" placeholder="Add a new task..." aria-label="Add a new task">
+        <button id="addBtn" aria-label="Add task">Add</button>
         <ul id="todoList"></ul>
+        <p id="emptyMsg" style="color:#ffd700; margin-top:18px;">No tasks yet!</p>
     </div>
     <script src="todo-app.js"></script>
 </body>

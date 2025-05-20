@@ -5,7 +5,6 @@ function playGame(playerChoice) {
     let shuffleIndex = 0;
     let shuffleCount = 0;
     const maxShuffles = 12; // Controls how long the animation lasts (12 * 100ms = 1.2s)
-    let computerChoice = choices[Math.floor(Math.random() * 3)];
 
     // Highlight player's choice
     document.getElementById("playerRock").classList.remove("selected");
@@ -34,6 +33,9 @@ function playGame(playerChoice) {
         shuffleCount++;
         if (shuffleCount >= maxShuffles) {
             clearInterval(shuffleInterval);
+
+            // Randomly pick computer's choice at the end for true randomness
+            let computerChoice = choices[Math.floor(Math.random() * 3)];
 
             // Final computer choice
             document.getElementById("computerRock").classList.remove("selected");
